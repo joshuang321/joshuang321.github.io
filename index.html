@@ -1,0 +1,258 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgb(79,79,79);
+        }
+        #cmm_container {
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+        #cmm_flex {
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        #cmm_left {
+            margin:auto;
+            text-align: left;
+        }
+        .cmm_page {
+            position:absolute;
+            top:0px;
+            right: 10%;
+            margin: auto;
+            width:60%;
+            padding-bottom: 50px;
+            padding-top:30px;
+        }
+        .cmm_icon_header {
+            display:inline-flex;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-style:solid;
+            border-width: 1px;
+            border-color: rgb(43, 43, 43);
+        }
+        .cmm_icon_header >img {
+            margin:auto;
+            width:24px;
+            height:24px;
+        }
+        .cmm_icon_header >p {
+            text-align: center;
+            margin: auto;
+        }
+        .cmm_icon_header_active {
+            height: calc(100% -4px);
+            border-top-color: rgb(0, 120, 212);
+            border-top-width: 3px;
+            color: white;
+            background-color: rgb(31, 31, 31);
+        }
+        .cmm_icon_header_inactive {
+            height: 100%;
+            background-color:rgb(24, 24, 24);
+            transition: 0.3s;
+        }
+        .cmm_icon_header_inactive:hover {
+            background-color: rgb(31, 31, 31);
+            cursor: pointer;
+        }
+        .cmm_display_image {
+            background-color: rgb(55, 55, 61, 0.0);
+            border-radius: 10px;
+            transition: 0.3s;
+            height: 100%;
+            width: 100%;
+            margin:auto;
+            padding: 10px;
+        }
+        .cmm_display_image:hover {
+            background-color: rgb(55, 55, 61);
+        }
+        .cmm_display_image >img {
+            height: 100%;
+            width: 100%;
+            margin:auto;
+        }
+        </style>
+    </head>
+    <body style="font-family: 'Courier New';background-color: rgb(31, 31, 31);color:rgb(181, 181, 181);">
+        <script>
+            function deactivate_and_activate_cur(id) {
+                var page =id +'_page';
+                var active =document.getElementsByClassName("cmm_icon_header_active");
+                var inactive =document.getElementById(id);
+                var page=document.getElementById(page);
+                if (active.length>0) {
+                    var cur =active[0];
+                    if (cur.id==id)
+                        return;
+                    var page_inactive =cur.id +'_page';
+                    document.getElementById(page_inactive).style.display='none';
+                    cur.classList.remove("cmm_icon_header_active");
+                    cur.classList.add("cmm_icon_header_inactive");
+                }
+                if (inactive!=null) {
+                    page.style.display ='block';
+                    inactive.classList.remove("cmm_icon_header_inactive");
+                    inactive.classList.add("cmm_icon_header_active");
+                }
+            }
+        </script>
+        <div style="position:absolute;top:0px;left:0px;height: 100%;width: 100%;text-align: center;">
+            <div style="position:relative">
+                <div style="position:fixed; display:flex; width: 20%;height: 100%;color:rgb(150, 150, 150);background-color:rgb(24, 24, 24);border-style:solid;border-width: 1px;border-color: rgb(43, 43, 43);"></div>
+                <div style="position:fixed; z-index: 10;top:0px; width:calc(80% - 3px); right:0px;height: 36px;color:rgb(150, 150, 150);background-color:rgb(24, 24, 24);border-style:solid;border-style:solid;border-width: 1px;border-color: rgb(43, 43, 43);">
+                    <div style="height: 100%;display:flex;">
+                        <div class="cmm_icon_header cmm_icon_header_active" id="index" onclick="deactivate_and_activate_cur('index')">
+                            <img src="html.svg">
+                            <p >index.html</p>
+                        </div>
+                        <div class="cmm_icon_header cmm_icon_header_inactive" id="common_ttf" onclick="deactivate_and_activate_cur('common_ttf')">
+                            <img src="c.svg">
+                            <p>common_ttf.c</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="index_page" class="cmm_page">
+                    <h1>Joshua Ng's Portfolio</h1>
+                    <h2>Who is this for?</h2>
+                    <p>If you on this website, you either when to my github and open the website on a new tab, or be fortunate enough to receive my resume.</p>
+                    <h2>What is this website for?</h2>
+                    <p>
+                        This website is for cataloguing programming stuff to be discussed or software that I privated to be released.<br>
+                        This website was also created for the sole purpose as a diary and portfolio.
+                    </p>
+
+                    <h1 style="height:100px;"></h1>
+                    <h2>About Myself</h2>
+                    <p>
+                        I am a 22 year old programmer from Singapore, I am generally good at any programming, and can do low or high-level, game, web, or application, system software development and design.<br>
+                        Some programming languages I use often are C/C++, C#, Python.<br>
+                        I am not very picky about languages, environments or libraries like Unity, React, Flutter, GTK or whatever junk, as long as it can do the job is fine by me.<br>
+                        I write low-level programs on my free time and can draw a little bit on the tablet.<br>
+                        I listen to rock/metal touhou arrangements.
+                    </p>
+                    <h1 style="height:25px;"></h1>
+                    <h2>What am I doing now?</h2>
+                    <p>
+                        Currently in BMT, hoping to sign on to DIS C4X.<br>
+                        I write low-level programs during my book out timing.<br>
+                        About to POP on 8 March.
+                    </p>
+
+                    <h1 style="height:100px;"></h1>
+                    <h2>Programming Philosophy</h2>
+                    <h3 style="color:rgb(100, 100, 100)">1. Reinventing the wheel is fun and needed.</h3>
+                    <p>
+                        The wheel is a perfect circle, if you can find a company that made a perfectly rounded circle, please give them the nobel peace prize.<br>
+                        Software is similar, you often expect third party libraries to be incomplete in terms of coverage, whether it is missing the function to<br>
+                        decode specific video or image formats, or be buggy and crash prone.<br>
+                        It is good and fun to know what you are dealing with and rewrite some stuff sometimes.
+                    </p>
+                    <h1 style="height:10px;"></h1>
+                    <h3 style="color:rgb(100, 100, 100)">2. Whatever you cannot write is not yours.</h3>
+                    <p>
+                        A quote that was inspired by a similar quote said by my BMT enciks.<br>
+                        From my experience as a programmer, we always had to commit to a nasty and clunky, industrial grade libraries and software.<br>
+                        It was also hard to do the stuff that we really need to focus and often have to rethink or hack our way around things which is not a very enjoyable experience.<br>
+                        Especially with dealing with pattented codecs, we could not even write the decoders for certain formats if we wanted to.<br>
+                        When using third party libraries or software, as a programmer you always had to suck thumb, carry on because you don't own or be able to modify the code.
+                    </p>
+                    <h1 style="height:10px;"></h1>
+                    <h3 style="color:rgb(100, 100, 100)">3. Make it work then make it run fast.</h3>
+                    <p>
+                        It is important to make something that works and can be improved later on, rather than spending time thinking how to write code that runs super fast.<br>
+                        A lot of time can be wasted on making it run super fast at the start, so it is better to know that you have produced something before anything else.<br>
+                        Software is like art, it needs time to be molded into something awesome.
+                    </p>
+                    
+
+                    <h1 style="height:100px;"></h1>
+                    <h2>Education Level</h2>
+                    <div id="cmm_container">
+                        <div id="cmm_flex">
+                            <p>Fairfield Methodist Secondary School</p>
+                            <p>April 2016 - December 2019</p>
+                        </div>
+                        <p id="cmm_left">Cambridge "O" Level Certificate: 14 points</p>
+                    </div>
+                    <div id="cmm_container">
+                        <div id="cmm_flex">
+                            <p>Ngee Ann Polytechnic</p>
+                            <p>April 2020 - August 2024</p>
+                        </div>
+                        <p id="cmm_left">Information Technology Student</p>
+                    </div>
+
+                    
+                    <h1 style="height:100px;"></h1>
+                    <h2>Employment History</h2>
+                    <div id="cmm_container">
+                        <div id="cmm_flex">
+                            <p>ACP Group</p>
+                            <p>March 2023 - May 2023</p>
+                        </div>
+                        <p id="cmm_left" style="font-style:italic;">Mobile Software Developer</p>
+                        <p id="cmm_left" style="text-decoration: underline;margin-top:10px;">Job Description</p>
+                        <p id="cmm_left" style="margin-top:10px">
+                            Worked on the Loop LMS, a learning management system, both on the web backend and mobile frontend.
+                        </p>
+                    </div>
+                    <div id="cmm_container" style="margin-top:20px;">
+                        <div id="cmm_flex">
+                            <p>Digital Dream</p>
+                            <p>February 2024 - October 2024</p>
+                        </div>
+                        <p id="cmm_left" style="font-style:italic;">Programmer/Engineer</p>
+                        <p id="cmm_left" style="text-decoration: underline;margin-top:10px;">Job Description</p>
+                        <p id="cmm_left" style="margin-top:10px">
+                            Worked and assisted on all programming aspects of a hardware product StoryTime, an immersive and interactive storyteller. Assisted and worked on the StoryTime editor, frontend, backend and software deployment. 
+                        </p>
+                    </div>
+                </div>
+
+
+                <div id="common_ttf_page" class="cmm_page" style="display:none">
+                    <h1>common_ttf v1.3</h1>
+                    <h2>About this project</h2>
+                    <p>
+                        This project aims to create a single file Unicode TTF rasterizer, with the hopes of using it as a part of font rendering engine.                         
+                    </p>
+                    <h2>Current Status</h2>
+                    <p>
+                        Debug version completed on 07022025 and improvements currently being worked on<br>
+                        Font is able to rasterize Latin characters from the 0x21-0x7F (ASCII printable characters) with minor defects.
+                    </p>
+                    <div class="cmm_display_image">
+                        <img src="cour.bmp">
+                    </div>
+                    <p>1024 x 1024 atlas of 64pt ASCII Latin printable characters</p>
+                    
+                    
+                    <h1 style="height:35px;"></h1>
+                    <h2>List of things to do</h2>
+                    <p style="text-align: left;">
+                        - Improve rasterise quality and performance (it takes around ~0.1s for a 72pt character).<br>
+                        - Handle the different odd cases (bitmap fonts) as well as formats for cmap sub tables and etc. <br>
+                        - Code refactoring for runtime usage.
+                    </p>
+                    
+                    
+                    <h1 style="height:35px;"></h1>
+                    <a style="font-size:20px;" href="common_ttf.exe" download="common_ttf.exe">Download current version here</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
