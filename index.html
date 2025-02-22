@@ -120,17 +120,21 @@
                             <img src="c.svg">
                             <p>common_ttf.c</p>
                         </div>
+                        <div class="cmm_icon_header cmm_icon_header_inactive" id="common_atlas" onclick="deactivate_and_activate_cur('common_atlas')">
+                            <img src="c.svg">
+                            <p>common_atlas.c</p>
+                        </div>
                     </div>
                 </div>
 
                 
                 <div id="index_page" class="cmm_page">
                     <h1>Joshua Ng's Portfolio</h1>
-                    <h2>Who is this for?</h2>
+                    <h2>Who is this website for?</h2>
                     <p>If you on this website, you either when to my github and open the website on a new tab, or be fortunate enough to receive my resume.</p>
                     <h2>What is this website for?</h2>
                     <p>
-                        This website is for cataloguing programming stuff to be discussed or software that I privated to be released.<br>
+                        This website is for cataloguing programming stuff to be discussed or software that I privated.<br>
                         This website was also created for the sole purpose as a diary and portfolio.
                     </p>
 
@@ -226,9 +230,8 @@
                 <div id="common_ttf_page" class="cmm_page" style="display:none">
                     <h1>common_ttf v1.3</h1>
                     <h2>About this project</h2>
-                    <p>
-                        This project aims to create a single file Unicode TTF rasterizer, with the hopes of using it as a part of font rendering engine.                         
-                    </p>
+                    <p>This project aims to create a single file Unicode TTF rasterizer, with the hopes of using it as a part of font rendering engine.                         </p>
+                    <h1 style="height:35px;"></h1>
                     <h2>Current Status</h2>
                     <p>
                         Debug version completed on 07022025 and improvements currently being worked on<br>
@@ -237,20 +240,40 @@
                     <div class="cmm_display_image">
                         <img src="cour.bmp">
                     </div>
-                    <p>1024 x 1024 atlas of 64pt ASCII Latin printable characters</p>
-                    
-                    
+                    <p>1024 x 1024 atlas of 64pt ASCII Latin printable cour.ttf characters</p>
                     <h1 style="height:35px;"></h1>
                     <h2>List of things to do</h2>
                     <p style="text-align: left;">
                         - Improve rasterise quality and performance (it takes around ~0.1s for a 72pt character).<br>
                         - Handle the different odd cases (bitmap fonts) as well as formats for cmap sub tables and etc. <br>
-                        - Code refactoring for runtime usage.
+                        - Code refactoring for runtime usage.<br>
+                        - Improve debugging and font rasterizing comparing methods, DirectWrite, GDI, etc.
                     </p>
                     
                     
                     <h1 style="height:35px;"></h1>
                     <a style="font-size:20px;" href="common_ttf.exe" download="common_ttf.exe">Download current version here</a>
+                </div>
+
+
+                <div id="common_atlas_page" class="cmm_page" style="display:none">
+                    <h1>common_atlas v1.0</h1>
+                    <h1 style="height:35px;"></h1>
+                    <h2>About this project</h2>
+                    <p>This project aims to create and maintain a atlas editor for compiling 2D sprites/textures.</p>
+                    <h1 style="height:35px;"></h1>
+                    <h2>Current Status</h2>
+                    <p>
+                        Debug version completed on 21022025 and improvements currently being worked on.<br>
+                        Atlas can save/load progress, and export finished atlas image/texture.
+                    </p>
+                    <h1 style="height:35px;"></h1>
+                    <h2>List of things to do</h2>
+                    <p style="text-align: left;">
+                        - Improve user interfaces with gui stuff for moving sprites, collision detection, loading files and directory<br>
+                        - Working on loading images other than bitmaps?
+                    </p>
+                    <a style="font-size:20px;" href="common_atlas.exe" download="common_atlas.exe">Download current version here</a>
                 </div>
             </div>
         </div>
