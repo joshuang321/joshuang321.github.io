@@ -438,19 +438,25 @@
 
 
                 <div id="common_ttf_page" class="cmm_page" style="display:none">
-                    <h1>common_ttf v1.3</h1>
+                    <h1>common_ttf v1.4</h1>
                     <h2>About this project</h2>
                     <p>This project aims to create a single file Unicode TTF rasterizer, with the hopes of using it as a part of font rendering engine.                         </p>
                     <h1 style="height:35px;"></h1>
-                    <h2>Current Status</h2>
+                    <h2>Current Status - 01032025</h2>
                     <p>
-                        Debug version completed on 07022025 and improvements currently being worked on<br>
-                        Font is able to rasterize Latin characters from the 0x21-0x7F (ASCII printable characters) with minor defects.
+                        Fixed rasterization problem from sampling overflow on the x-axis.<br>
+                        Added bound to make sure does not overflow to the next scan line.
                     </p>
                     <div class="cmm_display_image">
-                        <img src="cour.bmp">
+                        <img src="cour_01032025.bmp">
                     </div>
                     <p>1024 x 1024 atlas of 64pt ASCII Latin printable cour.ttf characters</p>
+                    <div class="cmm_display_image">
+                        <img src="shifting_glyphs.png">
+                    </div>
+                    <p>Demo application to demostrate glyphs in different colors.</p>
+                    <a style="font-size:20px;" href="shifting_glyphs.zip" download="shifting_glyphs.zip">Download demo application here</a>
+
                     <h1 style="height:35px;"></h1>
                     <h2>List of things to do</h2>
                     <p style="text-align: left;">
@@ -459,10 +465,22 @@
                         - Code refactoring for runtime usage.<br>
                         - Improve debugging and font rasterizing comparing methods, DirectWrite, GDI, etc.
                     </p>
-                    
+
+                    <h1 style="height:35px;"></h1>
+                    <h2>History</h2>
+                    <h3 style="text-decoration: underline;font-style: italic;">07022025</h3>
+                    <p>
+                        Debug version completed on 07022025 and improvements currently being worked on<br>
+                        Font is able to rasterize Latin characters from the 0x21-0x7F (ASCII printable characters) with minor defects.
+                    </p>
+                    <div class="cmm_display_image">
+                        <img src="cour_07022025.bmp">
+                    </div>
+                    <p>1024 x 1024 atlas of 64pt ASCII Latin printable cour.ttf characters</p>
+
                     
                     <h1 style="height:35px;"></h1>
-                    <a style="font-size:20px;" href="common_ttf.exe" download="common_ttf.exe">Download current version here</a>
+                    <a style="font-size:20px;" href="common_ttfv1-4.exe" download="common_ttfv1-4.exe">Download current version here</a>
                 </div>
 
 
