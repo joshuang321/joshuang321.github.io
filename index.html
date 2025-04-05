@@ -1,513 +1,266 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-        ::-webkit-scrollbar {
-          width: 10px;
-          height: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: rgb(79,79,79);
-        }
-        #cmm_container {
-            padding-left: 15%;
-            padding-right: 15%;
-        }
-        #cmm_flex {
-            display:flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        #cmm_left {
-            margin:auto;
-            text-align: left;
-        }
-        .cmm_page {
-            position:absolute;
-            top:0px;
-            right: 10%;
-            margin: auto;
-            width:60%;
-            padding-bottom: 50px;
-            padding-top:30px;
-        }
-
-
-        .cmm_icon_sidebar {
-            display:inline-flex;
-            padding-right: 15px;
-            width: 85%;
-            height:25px;
-            padding-left: 0px;
-            user-select: none; 
-            transition: 0.3s;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        .cmm_icon_sidebar >p {
-            text-align: left;
-            padding-left: 10px;
-            margin: auto;
-            margin-left: 0px;
-        }
-        .cmm_icon_sidebar>img {
-            margin: 0px;
-            margin-left: 10px;
-            width:24px;
-            height:24px;
-        }
-        .cmm_icon_sidebar_inactive:hover {
-            background-color: rgb(42, 45, 46);
-        }
-        .cmm_icon_sidebar_active {
-            background-color: rgb(51,51,61);
-        }
-        .cmm_icon_sidebar_active>p{
-            color: white;
-        }
-
-        .cmm_icon_header {
-            display:inline-flex;
-            padding-left: 15px;
-            padding-right: 15px;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            border-style:solid;
-            border-width: 1px;
-            border-color: rgb(43, 43, 43);
-            user-select: none;
-            cursor: pointer;
-        }
-        .cmm_icon_header >img {
-            margin:auto;
-            width:24px;
-            height:24px;
-        }
-        .cmm_icon_header >p {
-            text-align: center;
-            margin: auto;
-        }
-        .cmm_icon_header_active {
-            height: calc(100% -4px);
-            border-top-color: rgb(0, 120, 212);
-            border-top-width: 3px;
-            color: white;
-            background-color: rgb(31, 31, 31);
-        }
-        .cmm_icon_header_inactive {
-            height: 100%;
-            background-color:rgb(24, 24, 24);
-            transition: 0.3s;
-        }
-        .cmm_icon_header_inactive:hover {
-            background-color: rgb(31, 31, 31);
-        }
-        .cmm_display_image {
-            background-color: rgb(55, 55, 61, 0.0);
-            border-radius: 10px;
-            transition: 0.3s;
-            height: 100%;
-            width: 100%;
-            margin:auto;
-            padding: 10px;
-        }
-        .cmm_display_image:hover {
-            background-color: rgb(55, 55, 61);
-        }
-        .cmm_display_image >img {
-            height: 100%;
-            width: 100%;
-            margin:auto;
-        }
-        .cmm_c_logo {
-            filter: invert(54%) sepia(42%) saturate(481%) hue-rotate(153deg) brightness(94%) contrast(92%);
-        }
-
-        .cmm_dropdown {
-            user-select: none;
-            margin-left: 10px;
-            margin-top: 5px;
-            display:flex;
-            flex-direction: row;
-            padding-top:5px;
-            padding-bottom:5px;
-            cursor: pointer;
-        }
-        .cmm_dropdown:hover {
-            background-color: rgb(29, 31, 32);
-        }
-        .cmm_dropdown>img {
-            transition: 0.3s;
-            width: 16px;
-            height:16px;
-            margin: 0px;
-        }
-        .cmm_dropdown>p {
-            text-align: left;
-            margin:0px;
-            margin-left:5px;
-            font-weight: bold;
-            color:white;
-        }
-        .cmm_dropdown:hover img {
-            transform: rotate(90deg);
-        }
-        .cmm_dropdown_active>img {
-            transform: rotate(90deg);
-        }
-
-        .cmm_dropdown_box {
-            overflow: hidden;
-            transition-property: max-height;
-            transition-duration: 0.2s;
-            margin-left:5px;
-        }
-        .cmm_dropdown_box_inactive {
-            max-height: 0px;
-        }
-        .cmm_dropdown_box_active {
-            max-height: 100%;
-        }
-        
-        </style>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0&icon_names=arrow_forward_ios" />
+        <link rel="stylesheet" href="index.css">
     </head>
-    <body style="font-family: 'Courier New';background-color: rgb(31, 31, 31);color:rgb(181, 181, 181);">
-        <script>
-            function deactivate_and_activate_cur(id) {
-                var page =id +'_page';
-                var active =document.getElementsByClassName("cmm_icon_header_active");
-                var active_sidebar = document.getElementsByClassName("cmm_icon_sidebar_active");
+    <body style="width:100vw;height:100vh;margin:0px;padding:0px;font-family: 'Courier New';">
+        <script src="index.js"></script>
+        <div class="cmm_flex">
+            <div id="side_bar">
+                <div id="dropdown-portfolio" class="cmm_dropdown" onclick="deactivate_and_activate_dropdown('dropdown-box-portfolio', 'dropdown-portfolio')">
+                    <img src="arrow_forward_ios_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg">
+                    <p id="dropdown-arrow">PORTFOLIO</p>
+                </div>
 
-                var inactive =document.getElementById(id);
-                var inactive_sidebar =document.getElementById(id + "_sidebar")
-                var page=document.getElementById(page);
-                if (active.length>0) {
-                    var cur =active[0];
-                    if (cur.id==id)
-                        return;
 
-                    cur.classList.remove("cmm_icon_header_active");
-                    cur.classList.add("cmm_icon_header_inactive");
-                }
-                active_sidebar[0].classList.remove("cmm_icon_sidebar_active");
-                if (inactive!=null) {
-                    inactive.classList.remove("cmm_icon_header_inactive");
-                    inactive.classList.add("cmm_icon_header_active");
-                }
-                inactive_sidebar.classList.add("cmm_icon_sidebar_active");
-                var pages =document.getElementsByClassName("cmm_page");
-                if (pages.length>0) {
-                    var i=0;
-                    while (i<pages.length) {
-                        var cur_page =pages[i];
-                        cur_page.style.display = "none";
-                        i++;
-                    }
-                }
-                page.style.display ='block';
-            }
-            function update_tab_bar() {
-                var tab_bar =document.getElementById("tab-bar");
-                if (tab_bar!=null) {
-                    var tab_bar_rect =tab_bar.getBoundingClientRect();
-                    var last_child =tab_bar.lastElementChild;
-                    var last_child_rect =last_child.getBoundingClientRect();
-                    var right1 =last_child_rect.x+last_child_rect.width;
-                    var right2 =tab_bar_rect.x+tab_bar_rect.width;
-                    
-                    if (right1 > right2) {
-                        tab_bar.style.height = tab_bar.parentElement.clientHeight;
-                        tab_bar.style.setProperty("overflow-x", "scroll");
-
-                    }
-                    else {
-                        tab_bar.style.height = tab_bar.parentElement.clientHeight;
-                        tab_bar.style.setProperty("overflow-x", "hidden");
-                    }
-                }
-            }
-            function deactivate_and_activate_dropdown(dropdown_box_id, dropdown_id) {
-                var dropdown_box = document.getElementById(dropdown_box_id);
-                var dropdown =document.getElementById(dropdown_id);
-                if (dropdown_box!=null && dropdown!=null) {
-                    if (dropdown_box.classList.contains("cmm_dropdown_box_inactive")) {
-                        dropdown_box.classList.remove("cmm_dropdown_box_inactive");
-                        dropdown.classList.add("cmm_dropdown_active");
-                        dropdown_box.classList.add("cmm_dropdown_box_active");
-                    }
-                    else {
-                        dropdown_box.classList.remove("cmm_dropdown_box_active");
-                        dropdown.classList.remove("cmm_dropdown_active");
-                        dropdown_box.classList.add("cmm_dropdown_box_inactive");
-                    }
-                }
-            }
-            function load_side_bar() {
-                var tab_bar =document.getElementById("tab-bar");
-                // var side_bar =document.getElementById("side-bar");
-                // if (tab_bar!=null) {
-                //     var items =tab_bar.getElementsByClassName("cmm_icon_header");
-                //     if (items.length>0) {
-                //         {
-                //             var i=0;
-                //             while (i<items.length) {
-                //                 var new_div =document.createElement("div");
-                //                 side_bar.appendChild(.items[i].
-                //             }
-                //         }
-                //     }
-                // }
-            }
-            window.onload = (event) => {
-                window.onresize = update_tab_bar;
-                update_tab_bar();
-                load_side_bar();
-            }
-        </script>
-        <div style="position:absolute;top:0px;left:0px;height: 100%;width: 100%;text-align: center;">
-            <div style="position:relative">
-                
-                
-                <div id="side-bar" style="position:fixed; display:flex; flex-direction: column; width: 20%;height: 100%;color:rgb(150, 150, 150);background-color:rgb(24, 24, 24);border-style:solid;border-width: 1px;border-color: rgb(43, 43, 43);font-size: 0.9em">
-
-                    <div id="dropdown-portfolio" class="cmm_dropdown" onclick="deactivate_and_activate_dropdown('dropdown-box-portfolio', 'dropdown-portfolio')">
-                        <img src="arrow_forward_ios_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg">
-                        <p id="dropdown-arrow">PORTFOLIO</p>
+                <!-- This is kinda hardcoded.. TODO: finish load_side_bar -->
+                <div id="dropdown-box-portfolio" class="cmm_dropdown_box cmm_dropdown_box_inactive">
+                    <div class="cmm_icon_sidebar cmm_icon_sidebar_active" id="index_sidebar" onclick="deactivate_and_activate_cur('index')">
+                        <img src="html.svg">
+                        <p >index.html</p>
                     </div>
-
-
-                    <!-- This is kinda hardcoded.. TODO: finish load_side_bar -->
-                    <div id="dropdown-box-portfolio" class="cmm_dropdown_box cmm_dropdown_box_inactive">
-                        <div class="cmm_icon_sidebar cmm_icon_sidebar_active" id="index_sidebar" onclick="deactivate_and_activate_cur('index')">
-                            <img src="html.svg">
-                            <p >index.html</p>
-                        </div>
-                        <div class="cmm_icon_sidebar cmm_icon_sidebar_inactive" id="common_ttf_sidebar" onclick="deactivate_and_activate_cur('common_ttf')">
-                            <img class="cmm_c_logo" src="c.svg">
-                            <p>common_ttf.c</p>
-                        </div>
-                        <div class="cmm_icon_sidebar cmm_icon_sidebar_inactive" id="common_atlas_sidebar" onclick="deactivate_and_activate_cur('common_atlas')">
-                            <img class="cmm_c_logo" src="c.svg">
-                            <p>common_atlas.c</p>
-                        </div>
+                    <div class="cmm_icon_sidebar cmm_icon_sidebar_inactive" id="common_ttf_sidebar" onclick="deactivate_and_activate_cur('common_ttf')">
+                        <img class="cmm_c_logo" src="c.svg">
+                        <p>common_ttf.c</p>
                     </div>
-
-
-                    
-                    <div id="dropdown-notes" class="cmm_dropdown" onclick="deactivate_and_activate_dropdown('dropdown-box-notes', 'dropdown-notes')">
-                        <img src="arrow_forward_ios_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg">
-                        <p id="dropdown-arrow">NOTES</p>
+                    <div class="cmm_icon_sidebar cmm_icon_sidebar_inactive" id="common_atlas_sidebar" onclick="deactivate_and_activate_cur('common_atlas')">
+                        <img class="cmm_c_logo" src="c.svg">
+                        <p>common_atlas.c</p>
                     </div>
-
-
-                    <div id="dropdown-box-notes" class="cmm_dropdown_box cmm_dropdown_box_inactive">
-                        <div class="cmm_icon_sidebar cmm_icon_sidebar_inactive" id="notes_sidebar" onclick="deactivate_and_activate_cur('notes')">
-                            <img src="html.svg">
-                            <p >notes.html</p>
-                        </div>
-
+                    <div class="cmm_icon_sidebar cmm_icon_sidebar_inactive" id="calculator_sidebar" onclick="deactivate_and_activate_cur('calculator')">
+                        <img src="html.svg">
+                        <p>calculator.html</p>
                     </div>
                 </div>
 
 
-                <div style="position:fixed; z-index: 10;top:0px; padding:0px; width:calc(80% - 3px); right:0px;height: 36px;color:rgb(150, 150, 150);background-color:rgb(24, 24, 24);border-style:solid;border-style:solid;border-width: 1px;border-color: rgb(43, 43, 43);">
-                    <div id="tab-bar" style="height: 100%;display:flex;overflow-y: hidden;">
-                        <div class="cmm_icon_header cmm_icon_header_active" id="index" onclick="deactivate_and_activate_cur('index')">
-                            <img src="html.svg">
-                            <p >index.html</p>
-                        </div>
-                        <div class="cmm_icon_header cmm_icon_header_inactive" id="common_ttf" onclick="deactivate_and_activate_cur('common_ttf')">
-                            <img class="cmm_c_logo" src="c.svg">
-                            <p>common_ttf.c</p>
-                        </div>
-                        <div class="cmm_icon_header cmm_icon_header_inactive" id="common_atlas" onclick="deactivate_and_activate_cur('common_atlas')">
-                            <img class="cmm_c_logo" src="c.svg">
-                            <p>common_atlas.c</p>
-                        </div>
-                    </div>
+                
+                <div id="dropdown-notes" class="cmm_dropdown" onclick="deactivate_and_activate_dropdown('dropdown-box-notes', 'dropdown-notes')">
+                    <img src="arrow_forward_ios_16dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.svg">
+                    <p id="dropdown-arrow">NOTES</p>
                 </div>
 
-                
-                <div id="index_page" class="cmm_page">
-                    <h1>Welcome!</h1>
-                    <h2>POTD</h2>
-                    <div class="cmm_display_image" style="width:40%">
-                        <img src="potd.png">
-                    </div>
-         
 
-                    <h2>About Myself</h2>
-                    <p>
-                        I am a 22 year old programmer from Singapore, I am generally good at any programming, and can do low or high-level, game, web, or application, system software development and design.<br>
-                        Some programming languages I use often are C/C++, C#, Python.<br>
-                        I am not very picky about languages, environments or libraries like Unity, React, Flutter, GTK or whatever junk, as long as it can do the job is fine by me.<br>
-                        I write low-level programs on my free time and can draw a little bit on the tablet.<br>
-                        I listen to rock/metal touhou arrangements.
-                    </p>
-                    
-                    <h1 style="height:100px;"></h1>
-                    <h2>Who is this website for?</h2>
-                    <p>If you on this website, you either when to my github and open the website on a new tab, or be fortunate enough to receive my resume.</p>
-                    <h2>What is this website for?</h2>
-                    <p>
-                        This website is for cataloguing programming stuff to be discussed or software that I privated.<br>
-                        This website was also created for the sole purpose as a diary and portfolio.
-                    </p>
-
-                    <h1 style="height:25px;"></h1>
-                    <h2>What am I doing now?</h2>
-                    <p>
-                        Currently in BMT, hoping to sign on to DIS C4X.<br>
-                        I write low-level programs during my book out timing.<br>
-                        About to POP on 8 March.
-                    </p>
-
-                    <h1 style="height:100px;"></h1>
-                    <h2>Programming Philosophy</h2>
-                    <h3 style="color:rgb(100, 100, 100)">1. Reinventing the wheel is fun and needed.</h3>
-                    <p>
-                        The wheel is a perfect circle, if you can find a company that made a perfectly rounded circle, please give them the nobel peace prize.<br>
-                        Software is similar, you often expect third party libraries to be incomplete in terms of coverage, whether it is missing the function to<br>
-                        decode specific video or image formats, or be buggy and crash prone.<br>
-                        It is good and fun to know what you are dealing with and rewrite some stuff sometimes.
-                    </p>
-                    <h1 style="height:10px;"></h1>
-                    <h3 style="color:rgb(100, 100, 100)">2. Whatever you cannot write is not yours.</h3>
-                    <p>
-                        A quote that was inspired by a similar quote said by my BMT enciks.<br>
-                        From my experience as a programmer, we always had to commit to a nasty and clunky, industrial grade libraries and software.<br>
-                        It was also hard to do the stuff that we really need to focus and often have to rethink or hack our way around things which is not a very enjoyable experience.<br>
-                        Especially with dealing with pattented codecs, we could not even write the decoders for certain formats if we wanted to.<br>
-                        When using third party libraries or software, as a programmer you always had to suck thumb, carry on because you don't own or be able to modify the code.
-                    </p>
-                    <h1 style="height:10px;"></h1>
-                    <h3 style="color:rgb(100, 100, 100)">3. Make it work then make it run fast.</h3>
-                    <p>
-                        It is important to make something that works and can be improved later on, rather than spending time thinking how to write code that runs super fast.<br>
-                        A lot of time can be wasted on making it run super fast at the start, so it is better to know that you have produced something before anything else.<br>
-                        Software is like art, it needs time to be molded into something awesome.
-                    </p>
-                    
-                    <h1 style="height:100px;"></h1>
-                    <a href="https://sites.google.com/view/joshuangs10205140b/home" style="font-size: 20px">My portfolio/work in Ngee Ann Polytechnic</a>
-
-                    <h1 style="height:100px;"></h1>
-                    <h2>Education Level</h2>
-                    <div id="cmm_container">
-                        <div id="cmm_flex">
-                            <p>Fairfield Methodist Secondary School</p>
-                            <p>April 2016 - December 2019</p>
-                        </div>
-                        <p id="cmm_left">Cambridge "O" Level Certificate: 14 points</p>
-                    </div>
-                    <div id="cmm_container">
-                        <div id="cmm_flex">
-                            <p>Ngee Ann Polytechnic</p>
-                            <p>April 2020 - August 2024</p>
-                        </div>
-                        <p id="cmm_left">Information Technology Student</p>
+                <div id="dropdown-box-notes" class="cmm_dropdown_box cmm_dropdown_box_inactive">
+                    <div class="cmm_icon_sidebar cmm_icon_sidebar_inactive" id="notes_sidebar" onclick="deactivate_and_activate_cur('notes')">
+                        <img src="html.svg">
+                        <p >notes.html</p>
                     </div>
 
-                    
-                    <h1 style="height:100px;"></h1>
-                    <h2>Employment History</h2>
-                    <div id="cmm_container">
-                        <div id="cmm_flex">
-                            <p>ACP Group</p>
-                            <p>March 2023 - May 2023</p>
+                </div>
+            </div>
+            <div class="cmm_flex" style="flex-direction: column;background-color: rgb(31, 31, 31);">
+                <div id="tab_bar" class="cmm_flex">
+                    <div class="cmm_icon_header cmm_icon_header_active" id="index" onclick="deactivate_and_activate_cur('index')">
+                        <img src="html.svg">
+                        <p >index.html</p>
+                    </div>
+                    <div class="cmm_icon_header cmm_icon_header_inactive" id="common_ttf" onclick="deactivate_and_activate_cur('common_ttf')">
+                        <img class="cmm_c_logo" src="c.svg">
+                        <p>common_ttf.c</p>
+                    </div>
+                    <div class="cmm_icon_header cmm_icon_header_inactive" id="common_atlas" onclick="deactivate_and_activate_cur('common_atlas')">
+                        <img class="cmm_c_logo" src="c.svg">
+                        <p>common_atlas.c</p>
+                    </div>
+
+                    <div class="cmm_icon_header cmm_icon_header_inactive" id="calculator" onclick="deactivate_and_activate_cur('calculator')">
+                        <img  src="html.svg">
+                        <p>calculator.html</p>
+                    </div>
+                </div>
+                <div id="content" style="flex-grow: 1;">
+  
+                    <div id="index_page" class="cmm_page">
+                        <h1>Welcome!</h1>
+                        <h2>POTD</h2>
+                        <div class="cmm_display_image" style="width:40%">
+                            <img src="potd.png">
                         </div>
-                        <p id="cmm_left" style="font-style:italic;">Mobile Software Developer</p>
-                        <p id="cmm_left" style="text-decoration: underline;margin-top:10px;">Job Description</p>
-                        <p id="cmm_left" style="margin-top:10px">
-                            Worked on the Loop LMS, a learning management system, both on the web backend and mobile frontend.
+             
+    
+                        <h2>About Myself</h2>
+                        <p>
+                            I am a 22 year old programmer from Singapore, I am generally good at any programming, and can do low or high-level, game, web, or application, system software development and design.<br>
+                            Some programming languages I use often are C/C++, C#, Python.<br>
+                            I am not very picky about languages, environments or libraries like Unity, React, Flutter, GTK or whatever junk, as long as it can do the job is fine by me.<br>
+                            I write low-level programs on my free time and can draw a little bit on the tablet.<br>
+                            I listen to rock/metal touhou arrangements.
                         </p>
-                    </div>
-                    <div id="cmm_container" style="margin-top:20px;">
-                        <div id="cmm_flex">
-                            <p>Digital Dream</p>
-                            <p>February 2024 - October 2024</p>
-                        </div>
-                        <p id="cmm_left" style="font-style:italic;">Programmer/Engineer</p>
-                        <p id="cmm_left" style="text-decoration: underline;margin-top:10px;">Job Description</p>
-                        <p id="cmm_left" style="margin-top:10px">
-                            Worked and assisted on all programming aspects of a hardware product StoryTime, an immersive and interactive storyteller. Assisted and worked on the StoryTime editor, frontend, backend and software deployment. 
+                        
+                        <h1 style="height:100px;"></h1>
+                        <h2>Who is this website for?</h2>
+                        <p>If you on this website, you either when to my github and open the website on a new tab, or be fortunate enough to receive my resume.</p>
+                        <h2>What is this website for?</h2>
+                        <p>
+                            This website is for cataloguing programming stuff to be discussed or software that I privated.<br>
+                            This website was also created for the sole purpose as a diary and portfolio.
                         </p>
+    
+                        <h1 style="height:25px;"></h1>
+                        <h2>What am I doing now?</h2>
+                        <p>
+                            Currently in BMT, hoping to sign on to DIS C4X.<br>
+                            I write low-level programs during my book out timing.<br>
+                            About to POP on 8 March.
+                        </p>
+    
+                        <h1 style="height:100px;"></h1>
+                        <h2>Programming Philosophy</h2>
+                        <h3 style="color:rgb(100, 100, 100)">1. Reinventing the wheel is fun and needed.</h3>
+                        <p>
+                            The wheel is a perfect circle, if you can find a company that made a perfectly rounded circle, please give them the nobel peace prize.<br>
+                            Software is similar, you often expect third party libraries to be incomplete in terms of coverage, whether it is missing the function to<br>
+                            decode specific video or image formats, or be buggy and crash prone.<br>
+                            It is good and fun to know what you are dealing with and rewrite some stuff sometimes.
+                        </p>
+                        <h1 style="height:10px;"></h1>
+                        <h3 style="color:rgb(100, 100, 100)">2. Whatever you cannot write is not yours.</h3>
+                        <p>
+                            A quote that was inspired by a similar quote said by my BMT enciks.<br>
+                            From my experience as a programmer, we always had to commit to a nasty and clunky, industrial grade libraries and software.<br>
+                            It was also hard to do the stuff that we really need to focus and often have to rethink or hack our way around things which is not a very enjoyable experience.<br>
+                            Especially with dealing with pattented codecs, we could not even write the decoders for certain formats if we wanted to.<br>
+                            When using third party libraries or software, as a programmer you always had to suck thumb, carry on because you don't own or be able to modify the code.
+                        </p>
+                        <h1 style="height:10px;"></h1>
+                        <h3 style="color:rgb(100, 100, 100)">3. Make it work then make it run fast.</h3>
+                        <p>
+                            It is important to make something that works and can be improved later on, rather than spending time thinking how to write code that runs super fast.<br>
+                            A lot of time can be wasted on making it run super fast at the start, so it is better to know that you have produced something before anything else.<br>
+                            Software is like art, it needs time to be molded into something awesome.
+                        </p>
+                        
+                        <h1 style="height:100px;"></h1>
+                        <a href="https://sites.google.com/view/joshuangs10205140b/home" style="font-size: 20px">My portfolio/work in Ngee Ann Polytechnic</a>
+    
+                        <h1 style="height:100px;"></h1>
+                        <h2>Education Level</h2>
+                        <div id="cmm_container">
+                            <div id="cmm_flex">
+                                <p>Fairfield Methodist Secondary School</p>
+                                <p>April 2016 - December 2019</p>
+                            </div>
+                            <p id="cmm_left">Cambridge "O" Level Certificate: 14 points</p>
+                        </div>
+                        <div id="cmm_container">
+                            <div id="cmm_flex">
+                                <p>Ngee Ann Polytechnic</p>
+                                <p>April 2020 - August 2024</p>
+                            </div>
+                            <p id="cmm_left">Information Technology Student</p>
+                        </div>
+    
+                        
+                        <h1 style="height:100px;"></h1>
+                        <h2>Employment History</h2>
+                        <div id="cmm_container">
+                            <div id="cmm_flex">
+                                <p>ACP Group</p>
+                                <p>March 2023 - May 2023</p>
+                            </div>
+                            <p id="cmm_left" style="font-style:italic;">Mobile Software Developer</p>
+                            <p id="cmm_left" style="text-decoration: underline;margin-top:10px;">Job Description</p>
+                            <p id="cmm_left" style="margin-top:10px">
+                                Worked on the Loop LMS, a learning management system, both on the web backend and mobile frontend.
+                            </p>
+                        </div>
+                        <div id="cmm_container" style="margin-top:20px;">
+                            <div id="cmm_flex">
+                                <p>Digital Dream</p>
+                                <p>February 2024 - October 2024</p>
+                            </div>
+                            <p id="cmm_left" style="font-style:italic;">Programmer/Engineer</p>
+                            <p id="cmm_left" style="text-decoration: underline;margin-top:10px;">Job Description</p>
+                            <p id="cmm_left" style="margin-top:10px">
+                                Worked and assisted on all programming aspects of a hardware product StoryTime, an immersive and interactive storyteller. Assisted and worked on the StoryTime editor, frontend, backend and software deployment. 
+                            </p>
+                        </div>
                     </div>
-                </div>
-
-
-                <div id="common_ttf_page" class="cmm_page" style="display:none">
-                    <h1>common_ttf v1.4</h1>
-                    <h2>About this project</h2>
-                    <p>This project aims to create a single file Unicode TTF rasterizer, with the hopes of using it as a part of font rendering engine.                         </p>
-                    <h1 style="height:35px;"></h1>
-                    <h2>Current Status - 01032025</h2>
-                    <p>
-                        Fixed rasterization problem from sampling overflow on the x-axis.<br>
-                        Added bound to make sure does not overflow to the next scan line.
-                    </p>
-                    <div class="cmm_display_image">
-                        <img src="cour_01032025.bmp">
+    
+    
+                    <div id="common_ttf_page" class="cmm_page" style="display:none">
+                        <h1>common_ttf v1.4</h1>
+                        <h2>About this project</h2>
+                        <p>This project aims to create a single file Unicode TTF rasterizer, with the hopes of using it as a part of font rendering engine.                         </p>
+                        <h1 style="height:35px;"></h1>
+                        <h2>Current Status - 01032025</h2>
+                        <p>
+                            Fixed rasterization problem from sampling overflow on the x-axis.<br>
+                            Added bound to make sure does not overflow to the next scan line.
+                        </p>
+                        <div class="cmm_display_image">
+                            <img src="cour_01032025.bmp">
+                        </div>
+                        <p>1024 x 1024 atlas of 64pt ASCII Latin printable cour.ttf characters</p>
+                        <div class="cmm_display_image">
+                            <img src="shifting_glyphs.png">
+                        </div>
+                        <p>Demo application to demostrate glyphs in different colors.</p>
+                        <a style="font-size:20px;" href="shifting_glyphs.zip" download="shifting_glyphs.zip">Download demo application here</a>
+    
+                        <h1 style="height:35px;"></h1>
+                        <h2>List of things to do</h2>
+                        <p style="text-align: left;">
+                            - Improve rasterise quality and performance (it takes around ~0.1s for a 72pt character).<br>
+                            - Handle the different odd cases (bitmap fonts) as well as formats for cmap sub tables and etc. <br>
+                            - Code refactoring for runtime usage.<br>
+                            - Improve debugging and font rasterizing comparing methods, DirectWrite, GDI, etc.
+                        </p>
+    
+                        <h1 style="height:35px;"></h1>
+                        <h2>History</h2>
+                        <h3 style="text-decoration: underline;font-style: italic;">07022025</h3>
+                        <p>
+                            Debug version completed on 07022025 and improvements currently being worked on<br>
+                            Font is able to rasterize Latin characters from the 0x21-0x7F (ASCII printable characters) with minor defects.
+                        </p>
+                        <div class="cmm_display_image">
+                            <img src="cour_07022025.bmp">
+                        </div>
+                        <p>1024 x 1024 atlas of 64pt ASCII Latin printable cour.ttf characters</p>
+    
+                        
+                        <h1 style="height:35px;"></h1>
+                        <a style="font-size:20px;" href="common_ttfv1-4.exe" download="common_ttfv1-4.exe">Download current version here</a>
                     </div>
-                    <p>1024 x 1024 atlas of 64pt ASCII Latin printable cour.ttf characters</p>
-                    <div class="cmm_display_image">
-                        <img src="shifting_glyphs.png">
-                    </div>
-                    <p>Demo application to demostrate glyphs in different colors.</p>
-                    <a style="font-size:20px;" href="shifting_glyphs.zip" download="shifting_glyphs.zip">Download demo application here</a>
-
-                    <h1 style="height:35px;"></h1>
-                    <h2>List of things to do</h2>
-                    <p style="text-align: left;">
-                        - Improve rasterise quality and performance (it takes around ~0.1s for a 72pt character).<br>
-                        - Handle the different odd cases (bitmap fonts) as well as formats for cmap sub tables and etc. <br>
-                        - Code refactoring for runtime usage.<br>
-                        - Improve debugging and font rasterizing comparing methods, DirectWrite, GDI, etc.
-                    </p>
-
-                    <h1 style="height:35px;"></h1>
-                    <h2>History</h2>
-                    <h3 style="text-decoration: underline;font-style: italic;">07022025</h3>
-                    <p>
-                        Debug version completed on 07022025 and improvements currently being worked on<br>
-                        Font is able to rasterize Latin characters from the 0x21-0x7F (ASCII printable characters) with minor defects.
-                    </p>
-                    <div class="cmm_display_image">
-                        <img src="cour_07022025.bmp">
-                    </div>
-                    <p>1024 x 1024 atlas of 64pt ASCII Latin printable cour.ttf characters</p>
-
                     
-                    <h1 style="height:35px;"></h1>
-                    <a style="font-size:20px;" href="common_ttfv1-4.exe" download="common_ttfv1-4.exe">Download current version here</a>
-                </div>
-
-
-                <div id="common_atlas_page" class="cmm_page" style="display:none">
-                    <h1>common_atlas v1.0</h1>
-                    <h1 style="height:35px;"></h1>
-                    <h2>About this project</h2>
-                    <p>This project aims to create and maintain a atlas editor for compiling 2D sprites/textures.</p>
-                    <h1 style="height:35px;"></h1>
-                    <h2>Current Status</h2>
-                    <p>
-                        Debug version completed on 21022025 and improvements currently being worked on.<br>
-                        Atlas can save/load progress, and export finished atlas image/texture.
-                    </p>
-                    <h1 style="height:35px;"></h1>
-                    <h2>List of things to do</h2>
-                    <p style="text-align: left;">
-                        - Improve user interfaces with gui stuff for moving sprites, collision detection, loading files and directory<br>
-                        - Working on loading images other than bitmaps?
-                    </p>
-                    <a style="font-size:20px;" href="common_atlas.exe" download="common_atlas.exe">Download current version here</a>
-                </div>
-
-                <div id="notes_page" class="cmm_page" style="display:none">
-                    <p>Nothing here yet ... XD</p>
+                    <div id="common_atlas_page" class="cmm_page" style="display:none">
+                        <h1>common_atlas v1.0</h1>
+                        <h1 style="height:35px;"></h1>
+                        <h2>About this project</h2>
+                        <p>This project aims to create and maintain a atlas editor for compiling 2D sprites/textures.</p>
+                        <h1 style="height:35px;"></h1>
+                        <h2>Current Status</h2>
+                        <p>
+                            Debug version completed on 21022025 and improvements currently being worked on.<br>
+                            Atlas can save/load progress, and export finished atlas image/texture.
+                        </p>
+                        <h1 style="height:35px;"></h1>
+                        <h2>List of things to do</h2>
+                        <p style="text-align: left;">
+                            - Improve user interfaces with gui stuff for moving sprites, collision detection, loading files and directory<br>
+                            - Working on loading images other than bitmaps?
+                        </p>
+                        <a style="font-size:20px;" href="common_atlas.exe" download="common_atlas.exe">Download current version here</a>
+                    </div>
+    
+                    <div id="calculator_page" class="cmm_page" style="height:100%;display:none;padding: 0px;" >
+                        <div class="cmm_flex" style="flex-direction: column;">
+                            <div id="content_view" style="flex-grow: 1;"></div> 
+                            <div style="position: sticky;display: flex; bottom:2%;height: auto;padding:15px; margin:0px;background-color:  rgb(49,49,49);border-radius: 15px;">
+                                <input id="text_input" style="background-color: rgba(0, 0, 0, 0); color:rgb(181, 181, 181); font-size:1.2em; outline: none; font-family: 'Courier New'; font-weight: 500; height:45px; width:100%;"type="text" onkeydown />
+                                <img class="cmm_icon_button" style="cursor: pointer;" style="padding-left: 10px;" src="arrow_forward_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" onclick="do_calculator_input()">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div id="notes_page" class="cmm_page" style="display:none">
+                        <p>Nothing here yet ... XD</p>
+                    </div>
                 </div>
             </div>
         </div>
+        
     </body>
 </html>
